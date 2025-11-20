@@ -19,7 +19,7 @@ function Home() {
                     <p className="text-lg text-gray-300 mb-8">I create stunning web experiences with modern technologies and innovative design.</p>
                     <div className="flex space-x-4">
                         <a href="" className="px-6 py-3 bg-purple-500 rounded-lg font-medium hover:bg-purple-700 transition duration-300 ">Download CV</a>
-                        <a href="contact" className="px-6 py-3 border border-purple-500 rounded-lg font-medium hover:bg-purple-700 transition decoration-purple-300 ">Contact Me</a>
+                        <a href="contact" className="px-6 py-3 border border-purple-500 rounded-lg font-medium hover:bg-purple-700 transition  ">Contact Me</a>
 
                     </div>
                 </div>
