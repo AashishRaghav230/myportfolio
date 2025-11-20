@@ -5,6 +5,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@200..700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+* {
+    border: none !important;
+    outline: none !important;
+  }
+
 *{
     font-family: 'Saira', sans-serif;
 }
@@ -37,3 +42,53 @@
     background-position: center;
     height: 100vh;
   }
+/* 3D Tilt Effect */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+  .tilt-card:hover {
+    transform: perspective(900px) rotateX(6deg) rotateY(-6deg) scale(1.03);
+  }
+  
+  /* Glow Border */
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    padding: 2px;
+    background: linear-gradient(135deg, #8b5cf6, #c084fc, #6d28d9);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+  }
+  
+  /* Shine (Light Sweep) Effect */
+  .shine {
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+    transform: translateX(-100%);
+    animation: shineMove 1s ease forwards;
+  }
+  
+  .group:hover .shine {
+    animation: shineMove 0.8s ease;
+  }
+  
+  @keyframes shineMove {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  

@@ -1,106 +1,159 @@
-import React from "react";
-import gymimg from "./images/gym.png"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
-const projects = [
-  
-  {
-    title: "E-commerce App",
-    description: "Shop online with React + Node.js backend.",
-    image: "/images/ecommerce.jpg",
-    liveLink: "https://example.com/ecommerce",
-    codeLink: "https://github.com/example/ecommerce",
-  },
-  {
-    title: "Blog Platform",
-    description: "Write and share tech blogs, MERN stack project.",
-    image: "/images/blog.jpg",
-    liveLink: "https://example.com/blog",
-    codeLink: "https://github.com/example/blog",
-  },
-  {
-    title: "Gym Website",
-    description: "Responsive MERN website for fitness enthusiasts.",
-    image: gymimg ,
-    liveLink: "https://aashishraghav230.github.io/x-gym/",
-    codeLink: "https://github.com/AashishRaghav230/x-gym",
-  },
-  {
-    title: "Portfolio Website",
-    description: "Showcase skills and projects in a personal portfolio.",
-    image: "/images/portfolio.jpg",
-    liveLink: "https://example.com/portfolio",
-    codeLink: "https://github.com/example/portfolio",
-  },
-];
-
-
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import gym from "./images/gym.png";
 
 export default function Projects() {
-    useEffect(() => {
-        AOS.init({ duration: 1000 }); 
-      }, []);
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  const allProjects = [
+    {
+      id: 1,
+      category: "React",
+      title: "Gym Website",
+      desc: "Responsive gym website using React + Tailwind.",
+      img: gym,
+      tech: ["React", "Tailwind", "AOS"],
+      live: "https://aashishraghav230.github.io/x-gym/",
+      code: "https://github.com/AashishRaghav230/x-gym",
+    },
+    {
+      id: 2,
+      category: "MERN",
+      title: "E-Commerce Store",
+      desc: "Full MERN stack e-commerce with authentication.",
+      img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
+      tech: ["React", "Tailwind", "AOS"],
+      live: "https://your-live-link.com",
+      code: "https://github.com/your-code",
+    },
+    {
+      id: 3,
+      category: "UI",
+      title: "Portfolio Website",
+      desc: "Clean UI portfolio with animations & dark mode.",
+      img: "https://images.unsplash.com/photo-1522199710521-72d69614c702",
+      tech: ["React", "Tailwind", "AOS"],
+      live: "https://your-live-link.com",
+      code: "https://github.com/your-code",
+    },
+  ];
+
+  const [activeFilter, setActiveFilter] = useState("All");
+  const filters = ["All", "React", "MERN", "UI"];
+
+  const filteredProjects =
+    activeFilter === "All"
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeFilter);
+
   return (
-    <section
-      id="projects"
-      className="w-full bg-black text-white py-16 px-6 md:px-20"
-    >
-      <div data-aos="fade-up" className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-purple-500 mb-6">
-           <span className="text-white">My</span> Projects
+    <section className="py-20 bg-black text-white" id="projects">
+      <div className="max-w-6xl mx-auto px-5">
+
+        <h2 data-aos="fade-up" className="text-4xl font-bold text-center mb-3">
+          <span className="text-purple-500">My</span> Projects
         </h2>
-        <p className="text-center text-gray-400 max-w-2xl mx-auto mb-12">
+
+        <p
+          data-aos="fade-up"
+          data-aos-delay="150"
+          className="text-center text-gray-400 max-w-2xl mx-auto mb-10"
+        >
           Some of my recent works. I focus on clean, modern UI with smooth
           interactions.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {projects.map((project, idx) => (
-            <div
-              key={idx}
-              className="group bg-neutral-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-purple-500/50 transition-shadow duration-300"
+        {/* Filter Buttons */}
+        <div
+          data-aos="fade-up"
+          data-aos-delay="250"
+          className="flex justify-center gap-4 mb-12"
+        >
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-5 py-2 rounded-full text-sm border transition 
+              ${
+                activeFilter === filter
+                  ? "bg-purple-600 border-purple-500"
+                  : "border-gray-700 hover:border-purple-500"
+              }`}
             >
-              {/* Image with hover zoom effect */}
-              <div className="overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
+              {filter}
+            </button>
+          ))}
+        </div>
 
-              {/* Content */}
-              <div className="p-5 flex flex-col gap-3">
-                <h3 className="text-lg font-semibold text-purple-400">
-                  {project.title}
-                </h3>
-                <p className="text-gray-300 text-sm">{project.description}</p>
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {filteredProjects.map((p, i) => (
+            <div
+              key={p.id}
+              data-aos="fade-up"
+              data-aos-delay={200 + i * 150}
+              className="p-[2px] rounded-2xl glow-border"
+            >
+              <div className="tilt-card bg-gray-900/60 backdrop-blur-xl rounded-2xl overflow-hidden shadow-xl relative group">
+                
+                {/* Shine */}
+                <div className="shine absolute inset-0 opacity-0 group-hover:opacity-100"></div>
 
-                {/* Buttons */}
-                <div className="flex gap-3 mt-3">
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center bg-purple-500 text-black py-2 rounded hover:bg-purple-400 transition-colors"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.codeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center bg-gray-800 text-white py-2 rounded hover:bg-gray-700 transition-colors"
-                  >
-                    Code
-                  </a>
+                {/* Image */}
+                <div className="overflow-hidden">
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    className="w-full h-48 object-cover transform group-hover:scale-110 duration-500"
+                  />
                 </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold">{p.title}</h3>
+                  <p className="text-gray-300 mt-2">{p.desc}</p>
+
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {p.tech.map((t, i) => (
+                      <span
+                        key={i}
+                        className="text-xs bg-purple-600/20 border border-purple-500 px-3 py-1 rounded-full"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between mt-5">
+
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      className="flex items-center gap-2 text-purple-400 hover:text-purple-300"
+                    >
+                      <FaExternalLinkAlt /> Live
+                    </a>
+
+                    <a
+                      href={p.code}
+                      target="_blank"
+                      className="flex items-center gap-2 text-purple-400 hover:text-purple-300"
+                    >
+                      <FaGithub /> Code
+                    </a>
+
+                  </div>
+                </div>
+
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
