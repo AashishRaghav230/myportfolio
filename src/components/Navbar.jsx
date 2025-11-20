@@ -82,11 +82,11 @@ function Navbar() {
         {/* Mobile menu */}
         {showmenu && (
           <div className="md:hidden mt-4 bg-black h-screen rounded-lg p-4 flex flex-col space-y-4 text-center justify-center">
-            <a onClick={() => setshowmenu(!showmenu)} href="home" className="text-white hover:text-purple-500">Home</a>
-            <a onClick={() => setshowmenu(!showmenu)} href="about" className="text-white hover:text-purple-500">About</a>
-            <a onClick={() => setshowmenu(!showmenu)} href="skills" className="text-white hover:text-purple-500">Skills</a>
-            <a onClick={() => setshowmenu(!showmenu)} href="projects" className="text-white hover:text-purple-500">Projects</a>
-            <a onClick={() => setshowmenu(!showmenu)} href="contact" className="text-white hover:text-purple-500">Contact</a>
+            <a onClick={() => setshowmenu(!showmenu)} href="#home" className="text-white hover:text-purple-500">Home</a>
+            <a onClick={() => setshowmenu(!showmenu)} href="#about" className="text-white hover:text-purple-500">About</a>
+            <a onClick={() => setshowmenu(!showmenu)} href="#skills" className="text-white hover:text-purple-500">Skills</a>
+            <a onClick={() => setshowmenu(!showmenu)} href="#projects" className="text-white hover:text-purple-500">Projects</a>
+            <a onClick={() => setshowmenu(!showmenu)} href="#contact" className="text-white hover:text-purple-500">Contact</a>
           </div>
         )}
       </nav>
